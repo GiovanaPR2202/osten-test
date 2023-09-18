@@ -1,13 +1,11 @@
-import './App.css'
+import ToolForm from './components/ToolForm';
 
 function App() {
   return (
-    <>
-      <div>
-        <h1>Hello My Bother</h1>
-      </div>
-    </>
-  )
+    <div className="App">
+      <ToolForm />
+    </div>
+  );
 }
 
-export default App
+export default App;
