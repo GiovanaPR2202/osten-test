@@ -8,10 +8,6 @@ import swaggerJsdoc from 'swagger-jsdoc';
 const app = express();
 
 
-const corsOptions = {
-    origin: 'https://localhost:5050', 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
-};
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -42,7 +38,7 @@ const swaggerSpec = swaggerJsdoc(options);
 
 app.use(Controllers)
 
-app.use(cors(corsOptions));
+app.use(cors);
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
