@@ -25,5 +25,11 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
     ```
       npm run dev 
     ```
-* Para te mais detalhes da rota acesse :   `localhost:5050/api-docs` , para te acesso a documentação do swagger
 
+## Tecnologias 
+
+Tecnologias usada :
+
+* NodeJS / Typescript 
+* ReactJS
+* Prisma / PostgreSQL 
