@@ -12,13 +12,14 @@ interface Tool {
   mecanico: string;
 }
 
-const ToolList: React.FC = () => {
+ const  ToolList: React.FC = () => {
   const [tools, setTools] = useState<Tool[]>([]);
 
   useEffect(() => {
-    axios.get<Tool[]>('http://localhost:5050/alltools')
+    axios.get<{ ferramentas: Tool[] }>('http://localhost:5050/alltools')
       .then((response) => {
-        setTools(response.data); // Certifique-se de que a resposta contenha um array de ferramentas
+        console.log('Dados retornados:', response.data.ferramentas); // Acesse a propriedade "ferramentas"
+        setTools(response.data.ferramentas);
       })
       .catch((error) => {
         console.error('Erro ao buscar ferramentas:', error);
@@ -28,7 +29,7 @@ const ToolList: React.FC = () => {
   const handleEdit = (id: number) => {
     const newStatus = prompt('Digite o novo status:');
     if (newStatus !== null) {
-      axios.patch(`http://localhost:5050/tools/${id}`, { status: newStatus })
+      axios.put(`http://localhost:5050/tools/${id}`, { status: newStatus })
         .then(() => {
           setTools((prevTools) =>
             prevTools.map((tool) =>
@@ -76,22 +77,24 @@ const ToolList: React.FC = () => {
         });
     }
   };
-
+  
   return (
-    <div className="tool-list">
+    <>
       <h1>Lista de Ferramentas</h1>
-      {tools.map((tool) => (
-        <ToolItem
-          key={tool.id}
-          {...tool}
-          onReserve={() => handleReserve(tool.id)} 
-          onEdit={() => handleEdit(tool.id)} 
-          onDelete={() => handleDelete(tool.id)} 
-        />
-      ))}
-    </div>
+      <div className="tool-list">
+        {tools.map((tool) => (
+          <ToolItem
+            key={tool.id}
+            {...tool}
+            onReserve={() => handleReserve(tool.id)}
+            onEdit={() => handleEdit(tool.id)}
+            onDelete={() => handleDelete(tool.id)}
+          />
+        ))}
+      </div>
+    </>
+
   );
 };
-
 
 export default ToolList;
