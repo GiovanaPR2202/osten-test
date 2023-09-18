@@ -7,6 +7,7 @@ interface ToolItemProps {
   status: string;
   coletaEm?: Date;
   devolucaoEm?: Date;
+  mecanico : String,
   onEdit: (id: number) => void;
   onReserve: (id: number) => void;
   onDelete: (id: number) => void;
@@ -19,6 +20,7 @@ const ToolItem: React.FC<ToolItemProps> = ({
   status,
   coletaEm,
   devolucaoEm,
+  mecanico,
   onEdit,
   onReserve,
   onDelete,
@@ -30,6 +32,7 @@ const ToolItem: React.FC<ToolItemProps> = ({
       <p>Status: {status}</p>
       <p>Coleta em: {coletaEm?.toLocaleString()}</p>
       <p>Devolução em: {devolucaoEm?.toLocaleString()}</p>
+      <p>Mecanico : {mecanico}</p>
       <button onClick={() => onEdit(id)}>Editar</button>
       <button onClick={() => onReserve(id)}>Reservar</button>
       <button onClick={() => onDelete(id)}>Deletar</button>
